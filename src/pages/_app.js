@@ -13,9 +13,13 @@ function MyApp({ Component, pageProps }) {
         <meta name="Description" content="Lakazen2 | Happy Kids" />
       </Head>
 
-      <Devtools>
-      <Component {...pageProps} />
-      </Devtools>
+      {process.env.NEXT_PUBLIC_APP_STAGE === "dev" ? (
+        <Devtools>
+          <Component {...pageProps} />
+        </Devtools>
+      ) : (
+        <Component {...pageProps} />
+      )}
     </>
   );
 }
