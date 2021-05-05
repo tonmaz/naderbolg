@@ -56,5 +56,9 @@ module.exports = {
   variants: {
     extend: {},
   },
-  plugins: [require("@tailwindcss/ui"), require("@tailwindcss/forms")],
+  plugins: [
+    require("@tailwindcss/ui"),
+    require("@tailwindcss/forms"),
+    require("@tailwindcss/typography"),
+  ],
 };

@@ -1,22 +1,27 @@
+// pages/my-posts.js
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { API } from "aws-amplify";
-import { listPosts } from "../graphql/queries";
+import { API, Auth } from "aws-amplify";
+import { postsByUsername } from "../graphql/queries";
 
-export default function Home() {
+export default function MyPosts() {
   const [posts, setPosts] = useState([]);
   useEffect(() => {
     fetchPosts();
   }, []);
   async function fetchPosts() {
+    const { username } = await Auth.currentAuthenticatedUser();
     const postData = await API.graphql({
-      query: listPosts,
+      query: postsByUsername,
+      variables: { username },
     });
-    setPosts(postData.data.listPosts.items);
+    setPosts(postData.data.postsByUsername.items);
   }
   return (
     <div>
-      <h1 className="text-3xl font-semibold tracking-wide mt-6 mb-2">Posts</h1>
+      <h1 className="text-3xl font-semibold tracking-wide mt-6 mb-2">
+        My Posts
+      </h1>
       {posts.map((post, index) => (
         <Link key={index} href={`/posts/${post.id}`}>
           <div className="cursor-pointer border-b border-gray-300	mt-8 pb-4">
