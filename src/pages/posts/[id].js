@@ -1,14 +1,17 @@
 import { API } from "aws-amplify";
 import { useRouter } from "next/router";
-import ReactMarkdown from "react-markdown";
 import "../../configureAmplify";
-import { listPosts, getPost } from "@src/graphql/queries";
+import { getPost, listPosts } from "@src/graphql/queries";
+// Option 2: Browser-only (lightweight)
+// import { generateHTML } from '@tiptap/core'
+import parse from "html-react-parser";
 
 export default function Post({ post }) {
   const router = useRouter();
   if (router.isFallback) {
     return <div>Loading...</div>;
   }
+
   return (
     <div>
       <h1 className="text-5xl mt-4 font-semibold tracking-wide">
@@ -16,7 +19,9 @@ export default function Post({ post }) {
       </h1>
       <p className="text-sm font-light my-4">by {post.username}</p>
       <div className="mt-8">
-        <ReactMarkdown className="prose" children={post.content} />
+        {/*<ReactMarkdown className="prose" children={post.content} />*/}
+
+        {parse(post.content)}
       </div>
     </div>
   );
