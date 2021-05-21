@@ -1,6 +1,14 @@
 {
+  "auth": {
+    "naderblogf6b2a368": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false
+    }
+  },
   "api": {
-    "naderblog": {
+    "naderApi": {
       "service": "AppSync",
       "providerPlugin": "awscloudformation",
       "output": {
@@ -8,15 +16,15 @@
           "defaultAuthentication": {
             "authenticationType": "API_KEY",
             "apiKeyConfig": {
-              "apiKeyExpirationDays": 200,
-              "description": "public"
+              "apiKeyExpirationDays": 300,
+              "description": "public and private"
             }
           },
           "additionalAuthenticationProviders": [
             {
               "authenticationType": "AMAZON_COGNITO_USER_POOLS",
               "userPoolConfig": {
-                "userPoolId": "authnaderblogb7fa66e3"
+                "userPoolId": "authnaderblogf6b2a368"
               }
             }
           ]
@@ -24,12 +32,59 @@
       }
     }
   },
-  "auth": {
-    "naderblogb7fa66e3": {
-      "service": "Cognito",
+  "function": {
+    "naderfunction": {
+      "build": true,
       "providerPlugin": "awscloudformation",
-      "dependsOn": [],
-      "customAuth": false
+      "service": "Lambda",
+      "dependsOn": [
+        {
+          "category": "auth",
+          "resourceName": "naderblogf6b2a368",
+          "attributes": [
+            "UserPoolId"
+          ]
+        },
+        {
+          "category": "api",
+          "resourceName": "naderApi",
+          "attributes": [
+            "GraphQLAPIIdOutput",
+            "GraphQLAPIEndpointOutput",
+            "GraphQLAPIKeyOutput"
+          ]
+        }
+      ]
+    },
+    "naderfunction2": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "dependsOn": [
+        {
+          "category": "auth",
+          "resourceName": "naderblogf6b2a368",
+          "attributes": [
+            "UserPoolId"
+          ]
+        },
+        {
+          "category": "api",
+          "resourceName": "naderApi",
+          "attributes": [
+            "GraphQLAPIIdOutput",
+            "GraphQLAPIEndpointOutput",
+            "GraphQLAPIKeyOutput"
+          ]
+        },
+        {
+          "category": "function",
+          "resourceName": "naderfunction",
+          "attributes": [
+            "Name"
+          ]
+        }
+      ]
     }
   }
 }

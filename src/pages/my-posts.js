@@ -2,10 +2,11 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { API, Auth } from "aws-amplify";
-import { postsByUsername } from "../graphql/queries";
+import { getMessage, postsByUsername } from "../graphql/queries";
 
 export default function MyPosts() {
   const [posts, setPosts] = useState([]);
+
   useEffect(() => {
     fetchPosts();
   }, []);
@@ -17,6 +18,7 @@ export default function MyPosts() {
     });
     setPosts(postData.data.postsByUsername.items);
   }
+
   return (
     <div>
       <h1 className="text-3xl font-semibold tracking-wide mt-6 mb-2">
