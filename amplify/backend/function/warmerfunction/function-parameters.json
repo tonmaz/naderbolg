@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "auth": {
+      "naderblogf6b2a368": [
+        "read"
+      ]
+    },
+    "api": {
+      "naderApi": [
+        "Query"
+      ]
+    },
+    "function": {
+      "naderfunction": [
+        "create",
+        "read",
+        "update"
+      ]
+    }
+  },
+  "lambdaLayers": []
+}

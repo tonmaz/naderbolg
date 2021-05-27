@@ -1,0 +1,30 @@
+type Post @model
+@key(name: "postsByUsername", fields: ["username"], queryField: "postsByUsername")
+@auth(rules: [
+  { allow: owner, ownerField: "username" },
+  { allow: public, operations: [read] }
+]) {
+  id: ID!
+  title: String!
+  content: String!
+  username: String
+  comments: [Comment]
+}
+
+type Query {
+  getMessage (postId: ID): Post @function(name: "naderfunction-${env}")
+  sellerData : AWSJSON @function(name: "sellerAppFunction-${env}")
+}
+
+
+type Comment @model
+@auth(rules: [
+  { allow: owner, ownerField: "username" },
+  { allow: public, operations: [read] }
+])
+{
+  id: ID!
+  title: String
+  content: String
+  username: String
+}

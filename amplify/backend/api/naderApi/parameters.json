@@ -1,0 +1,11 @@
+{
+  "AppSyncApiName": "naderApi",
+  "DynamoDBBillingMode": "PAY_PER_REQUEST",
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthCognitoUserPoolId": {
+    "Fn::GetAtt": [
+      "authnaderblogf6b2a368",
+      "Outputs.UserPoolId"
+    ]
+  }
+}
