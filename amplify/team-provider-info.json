@@ -34,5 +34,41 @@
         }
       }
     }
+  },
+  "devo": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-naderblog-devo-102833-authRole",
+      "UnauthRoleArn": "arn:aws:iam::882695882769:role/amplify-naderblog-devo-102833-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::882695882769:role/amplify-naderblog-devo-102833-authRole",
+      "Region": "eu-central-1",
+      "DeploymentBucketName": "amplify-naderblog-devo-102833-deployment",
+      "UnauthRoleName": "amplify-naderblog-devo-102833-unauthRole",
+      "StackName": "amplify-naderblog-devo-102833",
+      "StackId": "arn:aws:cloudformation:eu-central-1:882695882769:stack/amplify-naderblog-devo-102833/88262c90-bec5-11eb-b971-020570dd4e7a",
+      "AmplifyAppId": "d3jhmwpggumgsk"
+    },
+    "categories": {
+      "auth": {
+        "naderblogf6b2a368": {}
+      },
+      "function": {
+        "naderfunction": {
+          "deploymentBucketName": "amplify-naderblog-devo-102833-deployment",
+          "s3Key": "amplify-builds/naderfunction-75644265444b4847664e-build.zip"
+        },
+        "naderfunction2": {
+          "deploymentBucketName": "amplify-naderblog-devo-102833-deployment",
+          "s3Key": "amplify-builds/naderfunction2-6734507a546e56696753-build.zip"
+        },
+        "warmerfunction": {
+          "deploymentBucketName": "amplify-naderblog-devo-102833-deployment",
+          "s3Key": "amplify-builds/warmerfunction-6a30522f505034775034-build.zip"
+        },
+        "sellerAppFunction": {
+          "deploymentBucketName": "amplify-naderblog-devo-102833-deployment",
+          "s3Key": "amplify-builds/sellerAppFunction-686a384b696536477248-build.zip"
+        }
+      }
+    }
   }
 }
