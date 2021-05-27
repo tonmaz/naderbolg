@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { API, Auth } from "aws-amplify";
 import { getMessage, getPost } from "../graphql/queries";
+import parse from "html-react-parser";
 
 export default function MyPosts() {
   const [post, setPost] = useState([]);
@@ -23,19 +24,18 @@ export default function MyPosts() {
   return (
     <div>
       <h1 className="text-3xl font-semibold tracking-wide mt-6 mb-2">
-        My Posts
+        My Post
       </h1>
-      {/*{posts.map((post, index) => (*/}
-      {/*  <Link key={index} href={`/posts/${post.id}`}>*/}
-      {/*    <div className="cursor-pointer border-b border-gray-300	mt-8 pb-4">*/}
-      {/*      <h2 className="text-xl font-semibold">{post.title}</h2>*/}
-      {/*      <p className="text-gray-500 mt-2">Author: {post.username}</p>*/}
-      {/*    </div>*/}
-      {/*  </Link>*/}
-      {/*))}*/}
-      <div className="cursor-pointer border-b border-gray-300	mt-8 pb-4">
-        <h2 className="text-xl font-semibold">{post.title}</h2>
-        <p className="text-gray-500 mt-2">Author: {post.username}</p>
+      <div>
+        <h1 className="text-5xl mt-4 font-semibold tracking-wide">
+          {post.title}
+        </h1>
+        <p className="text-sm font-light my-4">by {post.username}</p>
+        <div className="mt-8">
+          {/*<ReactMarkdown className="prose" children={post.content} />*/}
+          fdg
+          {parse(post.content)}
+        </div>
       </div>
     </div>
   );

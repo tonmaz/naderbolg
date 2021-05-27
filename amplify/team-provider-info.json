@@ -18,11 +18,19 @@
       "function": {
         "naderfunction": {
           "deploymentBucketName": "amplify-naderblog-dev-175838-deployment",
-          "s3Key": "amplify-builds/naderfunction-39737654764145664476-build.zip"
+          "s3Key": "amplify-builds/naderfunction-75644265444b4847664e-build.zip"
         },
         "naderfunction2": {
           "deploymentBucketName": "amplify-naderblog-dev-175838-deployment",
           "s3Key": "amplify-builds/naderfunction2-6734507a546e56696753-build.zip"
+        },
+        "warmerfunction": {
+          "deploymentBucketName": "amplify-naderblog-dev-175838-deployment",
+          "s3Key": "amplify-builds/warmerfunction-6a30522f505034775034-build.zip"
+        },
+        "sellerAppFunction": {
+          "deploymentBucketName": "amplify-naderblog-dev-175838-deployment",
+          "s3Key": "amplify-builds/sellerAppFunction-686a384b696536477248-build.zip"
         }
       }
     }
