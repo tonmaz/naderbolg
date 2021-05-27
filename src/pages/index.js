@@ -58,7 +58,7 @@ export default function Home() {
         className="inline-flex items-center px-3 py-2 border border-transparent text-xs font-medium rounded shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
         href="https://sellercentral-europe.amazon.com/apps/authorize/consent?application_id=amzn1.sp.solution.69a50f4e-2ab0-4bdc-ad39-053396c104eb&version=beta"
       >
-        Connect with Amazon
+        Connect with Amazon here
       </a>
       <h1 className="text-3xl font-semibold tracking-wide mt-6 mb-2"> Posts</h1>
       {posts.map((post, index) => (
