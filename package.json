@@ -104,7 +104,6 @@
     "@types/react": "17.0.6",
     "@typescript-eslint/eslint-plugin": "4.24.0",
     "@typescript-eslint/parser": "4.24.0",
-    "@ui-devtools/tailwind": "https://github.com/ui-devtools/tailwind.git",
     "autoprefixer": "10.2.5",
     "dotenv": "9.0.2",
     "eslint": "7.26.0",
