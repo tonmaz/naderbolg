@@ -8,9 +8,7 @@ import parse from "html-react-parser";
 export default function MyPosts() {
   const [post, setPost] = useState([]);
   const id = "729f3346-e9c6-4dd2-abd2-5421140317ec";
-  useEffect(() => {
-    fetchPosts(id);
-  }, []);
+
   async function fetchPosts(id) {
     const { username } = await Auth.currentAuthenticatedUser();
     const postData = await API.graphql({
@@ -27,14 +25,13 @@ export default function MyPosts() {
         My Post
       </h1>
       <div>
-        <h1 className="text-5xl mt-4 font-semibold tracking-wide">
-          {post.title}
-        </h1>
-        <p className="text-sm font-light my-4">by {post.username}</p>
+        <h1 className="text-5xl mt-4 font-semibold tracking-wide">ryytryj</h1>
+        <p className="text-sm font-light my-4">by </p>
+        <button onClick={() => fetchPosts(id)}>show data</button>
         <div className="mt-8">
           {/*<ReactMarkdown className="prose" children={post.content} />*/}
           fdg
-          {parse(post.content)}
+          {post.content && parse(post.content)}
         </div>
       </div>
     </div>
