@@ -45,7 +45,7 @@ module.exports = (phase) => {
   return nextTranslate({
     env,
     future: {
-      webpack5: true,
+      webpack5: false,
     },
     reactStrictMode: true,
   });
