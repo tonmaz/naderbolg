@@ -14,11 +14,11 @@ function Profile() {
   if (!user) return null;
   return (
     <div>
-      <h1 className="text-3xl font-semibold tracking-wide mt-6">Profile</h1>
-      <h3 className="font-medium text-gray-500 my-2">
+      <h1 className="mt-6 text-3xl font-semibold tracking-wide">Profile</h1>
+      <h3 className="my-2 font-medium text-gray-500">
         Username: {user.username}
       </h3>
-      <p className="text-sm text-gray-500 mb-6">
+      <p className="mb-6 text-sm text-gray-500">
         Email: {user.attributes.email}
       </p>
       <AmplifySignOut />

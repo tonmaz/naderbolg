@@ -21,12 +21,12 @@ export default function MyPosts() {
   console.log(post);
   return (
     <div>
-      <h1 className="text-3xl font-semibold tracking-wide mt-6 mb-2">
+      <h1 className="mt-6 mb-2 text-3xl font-semibold tracking-wide">
         My Post
       </h1>
       <div>
-        <h1 className="text-5xl mt-4 font-semibold tracking-wide">ryytryj</h1>
-        <p className="text-sm font-light my-4">by </p>
+        <h1 className="mt-4 text-5xl font-semibold tracking-wide">ryytryj</h1>
+        <p className="my-4 text-sm font-light">by </p>
         <button onClick={() => fetchPosts(id)}>show data</button>
         <div className="mt-8">
           {/*<ReactMarkdown className="prose" children={post.content} />*/}

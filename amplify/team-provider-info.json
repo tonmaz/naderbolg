@@ -66,7 +66,7 @@
         },
         "sellerAppFunction": {
           "deploymentBucketName": "amplify-naderblog-devo-102833-deployment",
-          "s3Key": "amplify-builds/sellerAppFunction-686a384b696536477248-build.zip"
+          "s3Key": "amplify-builds/sellerAppFunction-6f4a496572497846624c-build.zip"
         }
       }
     }
