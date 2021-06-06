@@ -49,4 +49,5 @@ type User @model @auth(rules: [{allow: private}]) {
   username: String
   profilepic: String
   email: String
+  address: String
 }

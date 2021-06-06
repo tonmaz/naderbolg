@@ -1,16 +1,17 @@
-import { API } from "aws-amplify";
 import { useRouter } from "next/router";
 import "../../configureAmplify";
-import { getPost, listPosts } from "@src/graphql/queries";
-// Option 2: Browser-only (lightweight)
-// import { generateHTML } from '@tiptap/core'
+import { getPost } from "@src/graphql/queries";
 import parse from "html-react-parser";
+import { usePost } from "../../../hooks/fetchPosts";
 
-export default function Post({ post }) {
+export default function Post() {
   const router = useRouter();
-  if (router.isFallback) {
-    return <div>Loading...</div>;
-  }
+  const { id } = router.query;
+
+  const { data, isLoading } = usePost(getPost, id);
+
+  if (isLoading) return "loading...";
+  const post = data.data.getPost;
 
   return (
     <div>
@@ -27,28 +28,29 @@ export default function Post({ post }) {
   );
 }
 
-export async function getStaticPaths() {
-  const postData = await API.graphql({
-    query: listPosts,
-  });
-  const paths = postData.data.listPosts.items.map((post) => ({
-    params: { id: post.id },
-  }));
-  return {
-    paths,
-    fallback: true,
-  };
-}
-
-export async function getStaticProps({ params }) {
-  const { id } = params;
-  const postData = await API.graphql({
-    query: getPost,
-    variables: { id },
-  });
-  return {
-    props: {
-      post: postData.data.getPost,
-    },
-  };
-}
+// export async function getStaticPaths() {
+//   const postData = await API.graphql({
+//     query: listPosts,
+//   });
+//   const paths = postData.data.listPosts.items.map((post) => ({
+//     params: { id: post.id },
+//   }));
+//   return {
+//     paths,
+//     fallback: true,
+//   };
+// }
+//
+// export async function getStaticProps({ params }) {
+//   const { id } = params;
+//
+//   const postData = await API.graphql({
+//     query: getPost,
+//     variables: { id },
+//   });
+//   return {
+//     props: {
+//       post: postData.data.getPost,
+//     },
+//   };
+// }

@@ -1,56 +1,15 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { API } from "aws-amplify";
-import { getMessage, listPosts, sellerData } from "../graphql/queries";
-import axios from "axios";
+
+import { getMessage, listPosts } from "../graphql/queries";
+import { usePosts } from "../../hooks/fetchPosts";
 
 export default function Home() {
-  const [posts, setPosts] = useState([]);
-  const [message, setMessage] = useState("");
-  useEffect(() => {
-    fetchPosts();
-  }, []);
-  async function fetchPosts() {
-    const postData = await API.graphql({
-      query: listPosts,
-    });
-    setPosts(postData.data.listPosts.items);
-  }
-  useEffect(() => {
-    fetchMessage();
-    fetchSeller();
-  }, []);
-  async function fetchMessage() {
-    const lambMessage = await API.graphql({
-      query: getMessage,
-    });
-    setMessage(lambMessage.data);
-  }
-  async function fetchSeller() {
-    const Data = await API.graphql({
-      query: sellerData,
-    });
-    console.log(Data);
-  }
+  const { data, isLoading } = usePosts(listPosts);
 
-  function connect() {
-    // async function getUser() {
-    //   try {
-    //     const response = await axios.get(
-    //       "https://sellercentral-europe.amazon.com/apps/authorize/consent?application_id=amzn1.sp.solution.69a50f4e-2ab0-4bdc-ad39-053396c104eb&version=beta"
-    //     );
-    //     return response.data;
-    //   } catch (error) {
-    //     console.error(error);
-    //   }
-    // }
-    //
-    // const connectData = getUser();
-    // console.log(connectData);
-    // return connectData;
-  }
+  if (isLoading) return "loading...";
+  const posts = data.data.listPosts.items;
 
-  // console.log(message);
   return (
     <div>
       <a
@@ -72,3 +31,12 @@ export default function Home() {
     </div>
   );
 }
+// export async function getServerSideProps(context) {
+//   const sdata = await API.graphql({
+//     query: listPosts,
+//   });
+//
+//   return {
+//     props: { sdata }, // will be passed to the page component as props
+//   };
+// }

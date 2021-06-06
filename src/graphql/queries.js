@@ -10,11 +10,19 @@ export const getMessage = /* GraphQL */ `
       username
       comments {
         id
-        title
-        content
-        username
+        body
+        timelineitemID
         createdAt
         updatedAt
+        author {
+          id
+          username
+          profilepic
+          email
+          address
+          createdAt
+          updatedAt
+        }
       }
       createdAt
       updatedAt
@@ -35,11 +43,19 @@ export const getPost = /* GraphQL */ `
       username
       comments {
         id
-        title
-        content
-        username
+        body
+        timelineitemID
         createdAt
         updatedAt
+        author {
+          id
+          username
+          profilepic
+          email
+          address
+          createdAt
+          updatedAt
+        }
       }
       createdAt
       updatedAt
@@ -60,9 +76,8 @@ export const listPosts = /* GraphQL */ `
         username
         comments {
           id
-          title
-          content
-          username
+          body
+          timelineitemID
           createdAt
           updatedAt
         }
@@ -95,9 +110,8 @@ export const postsByUsername = /* GraphQL */ `
         username
         comments {
           id
-          title
-          content
-          username
+          body
+          timelineitemID
           createdAt
           updatedAt
         }
@@ -108,15 +122,97 @@ export const postsByUsername = /* GraphQL */ `
     }
   }
 `;
+export const getTimelineItem = /* GraphQL */ `
+  query GetTimelineItem($id: ID!) {
+    getTimelineItem(id: $id) {
+      id
+      description
+      postTime
+      createdAt
+      updatedAt
+      comments {
+        items {
+          id
+          body
+          timelineitemID
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      content {
+        id
+        source
+        type
+        createdAt
+        updatedAt
+      }
+      author {
+        id
+        username
+        profilepic
+        email
+        address
+        createdAt
+        updatedAt
+      }
+    }
+  }
+`;
+export const listTimelineItems = /* GraphQL */ `
+  query ListTimelineItems(
+    $filter: ModelTimelineItemFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listTimelineItems(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        description
+        postTime
+        createdAt
+        updatedAt
+        comments {
+          nextToken
+        }
+        content {
+          id
+          source
+          type
+          createdAt
+          updatedAt
+        }
+        author {
+          id
+          username
+          profilepic
+          email
+          address
+          createdAt
+          updatedAt
+        }
+      }
+      nextToken
+    }
+  }
+`;
 export const getComment = /* GraphQL */ `
   query GetComment($id: ID!) {
     getComment(id: $id) {
       id
-      title
-      content
-      username
+      body
+      timelineitemID
       createdAt
       updatedAt
+      author {
+        id
+        username
+        profilepic
+        email
+        address
+        createdAt
+        updatedAt
+      }
     }
   }
 `;
@@ -129,9 +225,79 @@ export const listComments = /* GraphQL */ `
     listComments(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        title
-        content
+        body
+        timelineitemID
+        createdAt
+        updatedAt
+        author {
+          id
+          username
+          profilepic
+          email
+          address
+          createdAt
+          updatedAt
+        }
+      }
+      nextToken
+    }
+  }
+`;
+export const getContent = /* GraphQL */ `
+  query GetContent($id: ID!) {
+    getContent(id: $id) {
+      id
+      source
+      type
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listContents = /* GraphQL */ `
+  query ListContents(
+    $filter: ModelContentFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listContents(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        source
+        type
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const getUser = /* GraphQL */ `
+  query GetUser($id: ID!) {
+    getUser(id: $id) {
+      id
+      username
+      profilepic
+      email
+      address
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listUsers = /* GraphQL */ `
+  query ListUsers(
+    $filter: ModelUserFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listUsers(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
         username
+        profilepic
+        email
+        address
         createdAt
         updatedAt
       }

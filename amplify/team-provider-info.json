@@ -54,7 +54,7 @@
       "function": {
         "naderfunction": {
           "deploymentBucketName": "amplify-naderblog-devo-102833-deployment",
-          "s3Key": "amplify-builds/naderfunction-75644265444b4847664e-build.zip"
+          "s3Key": "amplify-builds/naderfunction-6b755256483435677a37-build.zip"
         },
         "naderfunction2": {
           "deploymentBucketName": "amplify-naderblog-devo-102833-deployment",

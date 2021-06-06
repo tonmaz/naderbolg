@@ -13,11 +13,19 @@ export const createPost = /* GraphQL */ `
       username
       comments {
         id
-        title
-        content
-        username
+        body
+        timelineitemID
         createdAt
         updatedAt
+        author {
+          id
+          username
+          profilepic
+          email
+          address
+          createdAt
+          updatedAt
+        }
       }
       createdAt
       updatedAt
@@ -36,11 +44,19 @@ export const updatePost = /* GraphQL */ `
       username
       comments {
         id
-        title
-        content
-        username
+        body
+        timelineitemID
         createdAt
         updatedAt
+        author {
+          id
+          username
+          profilepic
+          email
+          address
+          createdAt
+          updatedAt
+        }
       }
       createdAt
       updatedAt
@@ -59,14 +75,142 @@ export const deletePost = /* GraphQL */ `
       username
       comments {
         id
-        title
-        content
-        username
+        body
+        timelineitemID
         createdAt
         updatedAt
+        author {
+          id
+          username
+          profilepic
+          email
+          address
+          createdAt
+          updatedAt
+        }
       }
       createdAt
       updatedAt
+    }
+  }
+`;
+export const createTimelineItem = /* GraphQL */ `
+  mutation CreateTimelineItem(
+    $input: CreateTimelineItemInput!
+    $condition: ModelTimelineItemConditionInput
+  ) {
+    createTimelineItem(input: $input, condition: $condition) {
+      id
+      description
+      postTime
+      createdAt
+      updatedAt
+      comments {
+        items {
+          id
+          body
+          timelineitemID
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      content {
+        id
+        source
+        type
+        createdAt
+        updatedAt
+      }
+      author {
+        id
+        username
+        profilepic
+        email
+        address
+        createdAt
+        updatedAt
+      }
+    }
+  }
+`;
+export const updateTimelineItem = /* GraphQL */ `
+  mutation UpdateTimelineItem(
+    $input: UpdateTimelineItemInput!
+    $condition: ModelTimelineItemConditionInput
+  ) {
+    updateTimelineItem(input: $input, condition: $condition) {
+      id
+      description
+      postTime
+      createdAt
+      updatedAt
+      comments {
+        items {
+          id
+          body
+          timelineitemID
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      content {
+        id
+        source
+        type
+        createdAt
+        updatedAt
+      }
+      author {
+        id
+        username
+        profilepic
+        email
+        address
+        createdAt
+        updatedAt
+      }
+    }
+  }
+`;
+export const deleteTimelineItem = /* GraphQL */ `
+  mutation DeleteTimelineItem(
+    $input: DeleteTimelineItemInput!
+    $condition: ModelTimelineItemConditionInput
+  ) {
+    deleteTimelineItem(input: $input, condition: $condition) {
+      id
+      description
+      postTime
+      createdAt
+      updatedAt
+      comments {
+        items {
+          id
+          body
+          timelineitemID
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      content {
+        id
+        source
+        type
+        createdAt
+        updatedAt
+      }
+      author {
+        id
+        username
+        profilepic
+        email
+        address
+        createdAt
+        updatedAt
+      }
     }
   }
 `;
@@ -77,11 +221,19 @@ export const createComment = /* GraphQL */ `
   ) {
     createComment(input: $input, condition: $condition) {
       id
-      title
-      content
-      username
+      body
+      timelineitemID
       createdAt
       updatedAt
+      author {
+        id
+        username
+        profilepic
+        email
+        address
+        createdAt
+        updatedAt
+      }
     }
   }
 `;
@@ -92,11 +244,19 @@ export const updateComment = /* GraphQL */ `
   ) {
     updateComment(input: $input, condition: $condition) {
       id
-      title
-      content
-      username
+      body
+      timelineitemID
       createdAt
       updatedAt
+      author {
+        id
+        username
+        profilepic
+        email
+        address
+        createdAt
+        updatedAt
+      }
     }
   }
 `;
@@ -107,9 +267,107 @@ export const deleteComment = /* GraphQL */ `
   ) {
     deleteComment(input: $input, condition: $condition) {
       id
-      title
-      content
+      body
+      timelineitemID
+      createdAt
+      updatedAt
+      author {
+        id
+        username
+        profilepic
+        email
+        address
+        createdAt
+        updatedAt
+      }
+    }
+  }
+`;
+export const createContent = /* GraphQL */ `
+  mutation CreateContent(
+    $input: CreateContentInput!
+    $condition: ModelContentConditionInput
+  ) {
+    createContent(input: $input, condition: $condition) {
+      id
+      source
+      type
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateContent = /* GraphQL */ `
+  mutation UpdateContent(
+    $input: UpdateContentInput!
+    $condition: ModelContentConditionInput
+  ) {
+    updateContent(input: $input, condition: $condition) {
+      id
+      source
+      type
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteContent = /* GraphQL */ `
+  mutation DeleteContent(
+    $input: DeleteContentInput!
+    $condition: ModelContentConditionInput
+  ) {
+    deleteContent(input: $input, condition: $condition) {
+      id
+      source
+      type
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const createUser = /* GraphQL */ `
+  mutation CreateUser(
+    $input: CreateUserInput!
+    $condition: ModelUserConditionInput
+  ) {
+    createUser(input: $input, condition: $condition) {
+      id
       username
+      profilepic
+      email
+      address
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateUser = /* GraphQL */ `
+  mutation UpdateUser(
+    $input: UpdateUserInput!
+    $condition: ModelUserConditionInput
+  ) {
+    updateUser(input: $input, condition: $condition) {
+      id
+      username
+      profilepic
+      email
+      address
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteUser = /* GraphQL */ `
+  mutation DeleteUser(
+    $input: DeleteUserInput!
+    $condition: ModelUserConditionInput
+  ) {
+    deleteUser(input: $input, condition: $condition) {
+      id
+      username
+      profilepic
+      email
+      address
       createdAt
       updatedAt
     }

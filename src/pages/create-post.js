@@ -13,6 +13,7 @@ import Placeholder from "@tiptap/extension-placeholder";
 import { MenuBar } from "@src/common/components/blocks/Editor/menu-bar";
 
 // import MentionList from "./MentionList";
+import "../configureAmplify";
 
 const initialState = { title: "", content: "" };
 

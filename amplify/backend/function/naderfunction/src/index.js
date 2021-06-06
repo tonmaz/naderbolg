@@ -14,7 +14,7 @@ const docClient = new AWS.DynamoDB.DocumentClient();
 
 async function getProductById(postId) {
   const params = {
-    TableName: "Post-oz5figfvu5d4vfwweosbgxdsla-dev",
+    TableName: "Post-tmdtac6lrbba5ndm4zf3lsb4ru-devo",
     Key: { id: postId },
   };
   try {
