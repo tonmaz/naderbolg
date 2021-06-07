@@ -17,8 +17,10 @@ const fetcher = async (url) =>
     query: url,
   });
 
-export const usePost = (query, id) => {
-  const { data, error } = useSWR([query, id], getPostbyId);
+export const usePost = (query, id, post) => {
+  const { data, error } = useSWR([query, id], getPostbyId, {
+    initialdata: post,
+  });
 
   return {
     data: data,

@@ -1,14 +1,19 @@
 import { useRouter } from "next/router";
 
-import { getPost } from "@src/graphql/queries";
+import { getPost, listPosts } from "@src/graphql/queries";
 import parse from "html-react-parser";
 import { usePost } from "../../../hooks/fetchPosts";
+import { API, withSSRContext } from "aws-amplify";
 
-export default function Post() {
+export default function Post({ prepost }) {
   const router = useRouter();
   const { id } = router.query;
 
-  const { data, isLoading } = usePost(getPost, id);
+  const { data, isLoading } = usePost(getPost, id, prepost);
+
+  if (router.isFallback) {
+    return <div>Loading...</div>;
+  }
 
   if (isLoading) return "loading...";
   const post = data.data.getPost;
@@ -28,29 +33,31 @@ export default function Post() {
   );
 }
 
-// export async function getStaticPaths() {
-//   const postData = await API.graphql({
-//     query: listPosts,
-//   });
-//   const paths = postData.data.listPosts.items.map((post) => ({
-//     params: { id: post.id },
-//   }));
-//   return {
-//     paths,
-//     fallback: true,
-//   };
-// }
-//
-// export async function getStaticProps({ params }) {
-//   const { id } = params;
-//
-//   const postData = await API.graphql({
-//     query: getPost,
-//     variables: { id },
-//   });
-//   return {
-//     props: {
-//       post: postData.data.getPost,
-//     },
-//   };
-// }
+export async function getStaticPaths() {
+  const SSR = withSSRContext();
+  const postData = await SSR.API.graphql({
+    query: listPosts,
+  });
+  const paths = postData.data.listPosts.items.map((post) => ({
+    params: { id: post.id },
+  }));
+  return {
+    paths,
+    fallback: true,
+  };
+}
+
+export async function getStaticProps({ params }) {
+  const SSR = withSSRContext();
+  const { id } = params;
+
+  const postData = await SSR.API.graphql({
+    query: getPost,
+    variables: { id },
+  });
+  return {
+    props: {
+      prepost: postData.data.getPost,
+    },
+  };
+}
