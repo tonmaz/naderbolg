@@ -2,6 +2,7 @@ import "@src/common/globalStyles/main.css";
 import Head from "next/head";
 import Link from "next/link";
 // import "../common/globalStyles/tiptap.css";
+import "../configureAmplify";
 
 function MyApp({ Component, pageProps }) {
   return (

@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import "../../configureAmplify";
+
 import { getPost } from "@src/graphql/queries";
 import parse from "html-react-parser";
 import { usePost } from "../../../hooks/fetchPosts";

@@ -1,10 +1,9 @@
 import useSWR from "swr";
 import { API } from "aws-amplify";
 import { getPost } from "@src/graphql/queries";
-import "../src/configureAmplify";
 
 export const usePosts = (query, initialdata) => {
-  const { data, error } = useSWR(query, fetcher, initialdata);
+  const { data, error } = useSWR(query, fetcher);
   console.log(data);
   return {
     data: data,
