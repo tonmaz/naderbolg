@@ -1,8 +1,7 @@
 import useSWR from "swr";
 import { API } from "aws-amplify";
-import { getPost } from "@src/graphql/queries";
 
-export const usePosts = (query, initialdata) => {
+export const usePosts = (query) => {
   const { data, error } = useSWR(query, fetcher);
   console.log(data);
   return {
@@ -30,10 +29,8 @@ export const usePost = (query, id, post) => {
 };
 
 const getPostbyId = async (url, id) => {
-  const postData = await API.graphql({
+  return API.graphql({
     query: url,
     variables: { id },
   });
-
-  return postData;
 };

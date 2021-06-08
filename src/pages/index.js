@@ -1,15 +1,6 @@
-import { useState, useEffect } from "react";
 import Link from "next/link";
 
-import { getMessage, listPosts } from "../graphql/queries";
-import { usePosts } from "../../hooks/fetchPosts";
-
 export default function Home() {
-  const { data, isLoading } = usePosts(listPosts);
-
-  if (isLoading) return "loading...";
-  const posts = data.data.listPosts.items;
-
   return (
     <div>
       <a
@@ -20,23 +11,7 @@ export default function Home() {
         Connect with Amazon here
       </a>
       <h1 className="mt-6 mb-2 text-3xl font-semibold tracking-wide"> Posts</h1>
-      {posts.map((post, index) => (
-        <Link key={index} href={`/posts/${post.id}`}>
-          <div className="pb-4 border-b cursor-pointer border-gray-300	mt-8">
-            <h2 className="text-xl font-semibold">{post.title}</h2>
-            <p className="mt-2 text-gray-500">Author: {post.username}</p>
-          </div>
-        </Link>
-      ))}
+      My posts here
     </div>
   );
 }
-// export async function getServerSideProps(context) {
-//   const sdata = await API.graphql({
-//     query: listPosts,
-//   });
-//
-//   return {
-//     props: { sdata }, // will be passed to the page component as props
-//   };
-// }
