@@ -106,7 +106,7 @@
     "@typescript-eslint/eslint-plugin": "4.26.0",
     "@ui-devtools/tailwind": "https://github.com/tonmaz/devotailwind.git",
     "@typescript-eslint/parser": "4.26.0",
-    "autoprefixer": "10.2.5",
+    "autoprefixer": "10.2.6",
     "dotenv": "10.0.0",
     "eslint": "7.28.0",
     "eslint-config-prettier": "8.3.0",
